@@ -6,13 +6,13 @@ export interface SquareImageProps {
   size: 'small' | 'large'
 }
 
-const getSizePixels = (size: 'small' | 'large'): number => {
-  if (size === 'large') return 72
-  return 36
+const getSizePixels = (size: 'small' | 'large'): string => {
+  if (size === 'large') return '72px'
+  return '36px'
 }
 
 const SquareImage = styled.img<Pick<SquareImageProps, 'size'>>`
-  width: ${({ size }) => `${getSizePixels(size)}px`};
+  width: ${({ size }) => getSizePixels(size)};
   border-radius: 4px;
 `
 
