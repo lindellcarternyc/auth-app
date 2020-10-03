@@ -1,14 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
+import BaseButton from '../BaseButton'
 import { COLORS, lightenOrDarken } from '../colors'
 
 export interface ButtonProps {
   label: string
   primary?: boolean
   fullWidth?: boolean
+  onClick?: () => void
 }
 
-const StyledButton = styled.button<Pick<ButtonProps, 'primary' | 'fullWidth'>>`
+const StyledButton = styled(BaseButton)<Pick<ButtonProps, 'primary' | 'fullWidth'>>`
   background-color: ${({ primary }) => {
     if (primary === true) return COLORS.BLUE1
     return 'transparent'
@@ -27,6 +29,7 @@ const StyledButton = styled.button<Pick<ButtonProps, 'primary' | 'fullWidth'>>`
     if (fullWidth) return '100%'
   }};
   display: block;
+  outline: none;
 
   &:hover {
     background-color: ${({ primary }) => {

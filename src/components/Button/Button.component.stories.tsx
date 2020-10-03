@@ -17,7 +17,8 @@ const Template: Story<ButtonProps> = (args) => <Button {...args} />
 export const Primary = Template.bind({})
 Primary.args = {
   primary: true,
-  label: 'Primary Button'
+  label: 'Primary Button',
+  onClick: () => alert('Hello, World!')
 }
 
 export const PrimaryFullWidth = Template.bind({})
