@@ -1,6 +1,10 @@
 export const COLORS = {
   BLUE1: '#2f80ed',
-  GRAY1: '#828282'
+  GRAY1: '#828282',
+  GRAY2: '#f2f2f2',
+  GRAY3: '#4f4f4f',
+  GRAY4: '#e0e0e0',
+  RED1: '#eb5757'
 } as const
 
 const clampNum = (min: number, max: number) => (num: number): number => {

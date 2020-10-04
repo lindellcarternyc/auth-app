@@ -17,11 +17,12 @@ export interface MenuToggleProps {
   onClick: () => void
 }
 
-const MenuToggleWrapper = styled(BaseButton)`
+const MenuToggleWrapper = styled(BaseButton)<{ size: 'large' | 'small'}>`
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
   transition: all 0.3s ease-in;
+  padding-right: ${({ size }) => size === 'large' ? '0.5rem' : '0'};
 
   &:hover {
     transform: scale(1.1);
@@ -43,7 +44,7 @@ const MenuToggleName = styled.label``
 
 const MenuToggle: React.FC<MenuToggleProps> = ({ profile, active, size, onClick }) => {
   return (
-    <MenuToggleWrapper onClick={onClick}>
+    <MenuToggleWrapper onClick={onClick} size={size}>
       <SquareImage 
         src={profile.image}
         size="small"
