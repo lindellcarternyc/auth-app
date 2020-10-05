@@ -28,9 +28,14 @@ const IconInputWrapper = styled.div`
   position: relative;
 `
 
-const DOMInput = styled.input`
+const DOMInput = styled.input<{ active: boolean }>`
   width: 100%;
   margin-left: 8px;
+  border: 1px solid transparent;
+  border-bottom-color: ${({ active }) => {
+    if (active) return COLORS.GRAY1
+  }};
+  outline: none;
 `
   
 const PureIconInput: React.FC<PureIconInputProps> = ({ icon, label, id, onFocus, onBlur, onChange, value }) => {
@@ -48,6 +53,10 @@ const PureIconInput: React.FC<PureIconInputProps> = ({ icon, label, id, onFocus,
     }
     if (onBlur) onBlur(e)
   }, [onBlur, value])
+
+  const focusInput = () => {
+    if (inputRef.current) inputRef.current.focus()
+  }
 
   React.useEffect(() => {
     const input = inputRef.current
@@ -67,10 +76,10 @@ const PureIconInput: React.FC<PureIconInputProps> = ({ icon, label, id, onFocus,
   }
 
   return (
-    <IconInputWrapper>
+    <IconInputWrapper onClick={focusInput}>
       {icon({})}
       <IconInputLabel htmlFor={id} active={active} text={label} />
-      <DOMInput ref={inputRef} onChange={handleChange} value={value} />
+      <DOMInput ref={inputRef} onChange={handleChange} value={value} active={active} />
     </IconInputWrapper>
   )
 }
