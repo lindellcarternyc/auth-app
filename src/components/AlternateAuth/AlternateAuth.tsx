@@ -15,15 +15,16 @@ const AltAuthText = styled.p`
     }
   }
 `
-
-const AlternateAuth: React.FC<{
+export interface AlternateAuthProps {
   text: string
   link: {
     text: string
     to: string
   }
   onClick: (path: string) => void
-}> = ({ text, link, onClick }) => {
+}
+
+const AlternateAuth: React.FC<AlternateAuthProps> = ({ text, link, onClick }) => {
   return (
     <AltAuthText>
       {text}{' '}

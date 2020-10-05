@@ -5,6 +5,7 @@ interface BaseButtonProps {
   children: React.ReactNode
   onClick?: () => void
   className?: string
+  disabled?: boolean
 }
 
 const BaseButtonWrapper = styled.button<{ disabled?: boolean }>`
@@ -26,7 +27,7 @@ const BaseButton: React.FC<BaseButtonProps> = ({ children, onClick, className, d
     evt.stopPropagation()
 
     if (disabled) return
-    if (onClick) onClick()
+    if (onClick) { onClick() }
   }
 
   return (

@@ -13,5 +13,6 @@ const createLoaderButtonStory = createStoryFactory(LoaderButton)
 export const PrimaryLoaderButton = createLoaderButtonStory({
   label: 'Sign Up',
   isLoading: true,
-  primary: true
+  primary: true,
+  onClick: () => console.log('click loader button story')
 })

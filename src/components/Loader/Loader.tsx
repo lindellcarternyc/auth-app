@@ -22,7 +22,6 @@ const Spinner = styled.div<StyledLoaderProps>`
   border-radius: 50%;
   
   ${({ trackColor, loadColor }) => {
-    console.log(trackColor)
     const borderColor = trackColor === undefined ? 'rgba(255, 255, 255, 0.2)' : trackColor
     const borderTopColor = loadColor === undefined ? 'white' : loadColor
     return `border-color: ${borderColor};

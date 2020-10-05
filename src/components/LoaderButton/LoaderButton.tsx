@@ -8,7 +8,7 @@ export interface LoaderButtonProps extends ButtonProps {
   isLoading: boolean
 }
 
-const LoaderButton: React.FC<LoaderButtonProps> = ({ isLoading, label, primary, fullWidth, disabled }) => {
+const LoaderButton: React.FC<LoaderButtonProps> = ({ isLoading, label, primary, fullWidth, disabled, onClick }) => {
   const render = isLoading ? <Loader 
     trackColor={primary ? undefined : COLORS.GRAY2}
     loadColor={primary ? undefined : COLORS.GRAY3}
@@ -18,6 +18,7 @@ const LoaderButton: React.FC<LoaderButtonProps> = ({ isLoading, label, primary, 
       primary={primary}
       fullWidth={fullWidth}
       disabled={disabled || isLoading}
+      onClick={onClick}
     >
       {render}
     </StyledButton>
