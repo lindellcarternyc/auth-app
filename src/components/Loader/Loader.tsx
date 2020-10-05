@@ -20,8 +20,9 @@ const Spinner = styled.div<StyledLoaderProps>`
   ${getDimensions}
   border: 4px solid;
   border-radius: 50%;
-  /* border-top-color: white; */
+  
   ${({ trackColor, loadColor }) => {
+    console.log(trackColor)
     const borderColor = trackColor === undefined ? 'rgba(255, 255, 255, 0.2)' : trackColor
     const borderTopColor = loadColor === undefined ? 'white' : loadColor
     return `border-color: ${borderColor};
@@ -44,9 +45,9 @@ const Bars = styled.div<StyledLoaderProps>`
   ${getDimensions}
 `
 
-const Loader: React.FC<LoaderProps> = ({ type }) => {
-  if (type === 'bars') return <Bars />
-  return <Spinner />
+const Loader: React.FC<LoaderProps> = ({ type, ...rest }) => {
+  if (type === 'bars') return <Bars {...rest} />
+  return <Spinner {...rest} />
 }
 
 export default Loader

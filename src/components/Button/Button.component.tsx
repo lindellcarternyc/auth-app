@@ -10,7 +10,7 @@ export interface ButtonProps {
   onClick?: () => void
 }
 
-const StyledButton = styled(BaseButton)<Pick<ButtonProps, 'primary' | 'fullWidth'>>`
+export const StyledButton = styled(BaseButton)<Pick<ButtonProps, 'primary' | 'fullWidth'>>`
   background-color: ${({ primary }) => {
     if (primary === true) return COLORS.BLUE1
     return 'transparent'
@@ -28,7 +28,9 @@ const StyledButton = styled(BaseButton)<Pick<ButtonProps, 'primary' | 'fullWidth
   width: ${({ fullWidth }) => {
     if (fullWidth) return '100%'
   }};
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   outline: none;
 
   &:hover {
