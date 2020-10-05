@@ -8,11 +8,15 @@ export interface ButtonProps {
   primary?: boolean
   fullWidth?: boolean
   onClick?: () => void
+  disabled?: boolean
 }
 
-export const StyledButton = styled(BaseButton)<Pick<ButtonProps, 'primary' | 'fullWidth'>>`
-  background-color: ${({ primary }) => {
-    if (primary === true) return COLORS.BLUE1
+export const StyledButton = styled(BaseButton)<Pick<ButtonProps, 'primary' | 'fullWidth' | 'disabled'>>`
+  background-color: ${({ primary, disabled }) => {
+    if (primary === true) {
+      if (disabled) return lightenOrDarken(COLORS.BLUE1, -30)
+      return COLORS.BLUE1
+    }
     return 'transparent'
   }};
   color: ${({ primary }) => {
@@ -24,7 +28,6 @@ export const StyledButton = styled(BaseButton)<Pick<ButtonProps, 'primary' | 'fu
   border-radius: 4px;
   border: 1px solid ${({ primary }) => primary ? 'transparent' : COLORS.GRAY1 };
   transition: all 0.4s ease-in;
-  cursor: pointer;
   width: ${({ fullWidth }) => {
     if (fullWidth) return '100%'
   }};
@@ -34,8 +37,9 @@ export const StyledButton = styled(BaseButton)<Pick<ButtonProps, 'primary' | 'fu
   outline: none;
 
   &:hover {
-    background-color: ${({ primary }) => {
+    background-color: ${({ primary, disabled }) => {
       if (primary === true) {
+        if (disabled) return lightenOrDarken(COLORS.BLUE1, -30)
         return lightenOrDarken(COLORS.BLUE1, -20)
       }
       return COLORS.GRAY1
