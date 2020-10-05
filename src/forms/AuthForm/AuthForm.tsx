@@ -19,6 +19,7 @@ export interface AuthFormProps {
     isValid: boolean
   }
   onChange: (id: 'email' | 'password', value: string) => void
+  onSubmit: () => void
 }
 
 const StyledForm = styled.form`
@@ -33,13 +34,20 @@ const StyledForm = styled.form`
   }
 `
 
-const AuthForm: React.FC<AuthFormProps> = ({ data, action, state, onChange }) => {
+const AuthForm: React.FC<AuthFormProps> = ({ data, action, state, onChange, onSubmit }) => {
   const handleChange = (id: string, value: string) => {
     if (id === 'email' || id === 'password') onChange(id, value)
   }
 
+  const handleSubmit = (e?: React.FormEvent<HTMLFormElement> | React.SyntheticEvent<HTMLButtonElement>) => {
+    e?.preventDefault()
+    e?.stopPropagation()
+    
+    onSubmit()
+  }
+
   return (
-    <StyledForm>
+    <StyledForm onSubmit={handleSubmit}>
       <IconInput
        icon={FaEnvelope} 
        label="Email" 
@@ -59,6 +67,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ data, action, state, onChange }) =>
         primary
         fullWidth
         disabled={state.isValid === false}
+        onClick={() => handleSubmit()}
       />
     </StyledForm>
   )

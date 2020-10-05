@@ -24,7 +24,10 @@ const DefaultAuthFormProps: AuthFormProps = {
     isLoading: false,
     isValid: false
   },
-  onChange: () => {}
+  onChange: (id, value) => {
+    console.log(`change:[id=${id}]:[value=${value}]`)
+  },
+  onSubmit: () => alert('submit')
 }
 
 export const DefaultAuthForm = createAuthFormStory({
