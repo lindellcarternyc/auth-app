@@ -1,38 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useWindowDimensions } from '../../hooks/use-window-dimensions'
 
 import { COLORS } from '../colors'
 
-const Box = styled.div`
+const Box = styled.div<{ width: number }>`
   border: 1px solid ${COLORS.GRAY5};
+  border-radius: 4px;
+  width: ${({ width }) => width}px;
+  margin: 0 auto;
+  padding: 1rem;
 `
 
-const getWindowDimensions = () => {
-  return {
-    width: window.innerWidth,
-    height: window.innerHeight
-  }
-}
-
-const useWindowDimensions = (): { width: number, height: number } => {
-  const [dimensions, setDimensions] = React.useState(getWindowDimensions())
-
-  const handleResize = () => {
-    setDimensions(getWindowDimensions())
-  }
-
-  React.useEffect(() => {
-    document.addEventListener('resize', handleResize)
-    return () => document.removeEventListener('resize', handleResize)
-  }, [])
-
-  return dimensions
-}
-
-export const ResponsiveBox: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { width } = useWindowDimensions()
-  if (width >= 600) {
-    return <Box>{children}</Box>
+export const ResponsiveBox: React.FC<{ children: React.ReactNode, width: number }> = ({ children, width }) => {
+  const dimensions  = useWindowDimensions()
+  if (dimensions.width >= 600) {
+    return <Box width={width}>{children}</Box>
   }
   return <>{children}</>
 }
