@@ -13,12 +13,10 @@ export default {
 const createAuthFormStory = createStoryFactory(AuthForm)
 
 const DefaultAuthFormProps: AuthFormProps = {
+  type: 'LOGIN',
   data: {
     email: '',
     password: ''
-  },
-  action: {
-    text: 'Sign Up'
   },
   state: {
     isLoading: false,
