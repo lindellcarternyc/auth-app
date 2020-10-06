@@ -9,12 +9,8 @@ import SocialButtonGroup from '../../components/SocialButton/SocialButtonGroup'
 import AlternateAuth, { AlternateAuthProps } from '../../components/AlternateAuth/AlternateAuth'
 
 export interface AuthViewProps {
-  title: string
-  subtitle?: string
-  action: {
-    text: string
-    handler(data: {email: string, password: string}): Promise<void>
-  }
+  type: 'LOGIN' | 'REGISTER'
+  onSubmit: (data: { email: string, password: string }) => void
   isLoading: boolean
   alternateAuth: AlternateAuthProps
 }
@@ -46,10 +42,21 @@ const StyledAuthView = styled.div`
     }
   }
 `
-const AuthView: React.FC<AuthViewProps> = ({ action, title, subtitle, isLoading, alternateAuth }) => {
-  const onSubmit = async (data: {email: string, password: string}) => {
-    return await action.handler(data)
+
+const getHeaderText = (type: 'LOGIN' | 'REGISTER') => {
+  if (type === 'LOGIN') return ({
+    title: 'Login'
+  })
+
+  return {
+    title: 'Join thousands of learners from around the world',
+    subtitle: 'Master web development by making real-life projects. There are multiple paths for you to choose'
   }
+}
+
+const AuthView: React.FC<AuthViewProps> = ({ onSubmit, type, isLoading, alternateAuth }) => {
+  const { title, subtitle } = getHeaderText(type)
+
   return (
     <StyledAuthView>
       <div className="auth-header">
@@ -58,7 +65,7 @@ const AuthView: React.FC<AuthViewProps> = ({ action, title, subtitle, isLoading,
           <p>{subtitle}</p>
         </RenderIf>
       </div>
-      <AuthForm isLoading={isLoading} action={{ text: action.text }} onSubmit={onSubmit} />
+      <AuthForm isLoading={isLoading} type={type} onSubmit={onSubmit} />
       <div className="auth-footer">
         <p>or continue with these social profiles</p>
         <SocialButtonGroup />

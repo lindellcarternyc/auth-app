@@ -19,27 +19,24 @@ export default {
 const createAuthViewStory = createStoryFactory(AuthView)
 
 const DefaultAuthViewProps: AuthViewProps = {
-  title: 'This is a title',
-  action: {
-    text: 'Action text',
-    handler: async () => {}
-  },
+  type: 'LOGIN',
+  onSubmit: data => console.log(data),
   isLoading: false,
   alternateAuth: {
-    text: 'Alternate Auth',
-    link: {
-      text: 'Link',
-      to: ''
-    },
+    type: 'LOGIN',
     onClick: () => {}
   }
 }
 
-export const DefaultView = createAuthViewStory({
+export const LoginView = createAuthViewStory({
   ...DefaultAuthViewProps
 })
 
 export const SubtitleView = createAuthViewStory({
   ...DefaultAuthViewProps,
-  subtitle: 'This is a subtitle'
+  type: 'REGISTER',
+  alternateAuth: {
+    type: 'REGISTER',
+    onClick: () => {}
+  }
 })
