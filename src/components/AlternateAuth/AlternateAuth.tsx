@@ -16,19 +16,30 @@ const AltAuthText = styled.p`
   }
 `
 export interface AlternateAuthProps {
-  text: string
-  link: {
-    text: string
-    to: string
-  }
-  onClick: (path: string) => void
+  type: 'LOGIN' | 'REGISTER'
+  onClick: () => void
 }
 
-const AlternateAuth: React.FC<AlternateAuthProps> = ({ text, link, onClick }) => {
+const getText = (type: 'LOGIN' | 'REGISTER' ): { text: string, link: string } => {
+  if (type === 'LOGIN') {
+    return {
+      text: 'Already a member?',
+      link: 'Login'
+    }
+  }
+
+  return {
+    text: 'Don\'t have an account yet?',
+    link: 'Register'
+  }
+}
+
+const AlternateAuth: React.FC<AlternateAuthProps> = ({ type, onClick }) => {
+  const { text, link } = getText(type)
   return (
     <AltAuthText>
       {text}{' '}
-      <span onClick={() => onClick(link.to)}>{link.text}</span>
+      <span onClick={onClick}>{link}</span>
     </AltAuthText>
   )
 }

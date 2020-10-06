@@ -11,19 +11,11 @@ export default {
 const createAlternateAuthStory = createStoryFactory(AlternateAuth)
 
 export const LoginAlternate = createAlternateAuthStory({
-  text: `Don't have an account yet?`,
-  link: {
-    text: 'Register',
-    to: ''
-  },
+  type: 'LOGIN',
   onClick: () => { console.log('register') }
 })
 
 export const RegisterAlternate = createAlternateAuthStory({
-  text: 'Already a member?',
-  link: {
-    text: 'Login',
-    to: '#'
-  },
+  type: 'REGISTER',
   onClick: () => {}
 })
