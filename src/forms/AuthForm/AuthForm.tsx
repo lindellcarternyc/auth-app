@@ -11,9 +11,7 @@ export interface AuthFormProps {
     email: string
     password: string
   }
-  action: {
-    text: string
-  }
+  type: 'LOGIN' | 'REGISTER'
   state: {
     isLoading: boolean
     isValid: boolean
@@ -34,7 +32,7 @@ const StyledForm = styled.form`
   }
 `
 
-const AuthForm: React.FC<AuthFormProps> = ({ data, action, state, onChange, onSubmit }) => {
+const AuthForm: React.FC<AuthFormProps> = ({ data, type, state, onChange, onSubmit }) => {
   const handleChange = (id: string, value: string) => {
     if (id === 'email' || id === 'password') onChange(id, value)
   }
@@ -62,12 +60,12 @@ const AuthForm: React.FC<AuthFormProps> = ({ data, action, state, onChange, onSu
         onChange={handleChange}
       />
       <LoaderButton 
-        label={action.text} 
+        label={type === 'LOGIN' ? 'Login' : 'Start coding now'} 
         isLoading={state.isLoading} 
         primary
         fullWidth
         disabled={state.isValid === false}
-        onClick={() => handleSubmit()}
+        onClick={handleSubmit}
       />
     </StyledForm>
   )
