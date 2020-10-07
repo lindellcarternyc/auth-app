@@ -7,6 +7,7 @@ import RenderIf from '../../components/RenderIf/RenderIf'
 import AuthForm from '../../forms/AuthForm/AuthForm.container'
 import SocialButtonGroup from '../../components/SocialButton/SocialButtonGroup'
 import AlternateAuth, { AlternateAuthProps } from '../../components/AlternateAuth/AlternateAuth'
+import { useThemeContext } from '../../hooks/use-theme-context'
 
 export interface AuthViewProps {
   type: 'LOGIN' | 'REGISTER'
@@ -15,9 +16,12 @@ export interface AuthViewProps {
   alternateAuth: AlternateAuthProps
 }
 
-const StyledAuthView = styled.div`
+const StyledAuthView = styled.div<{ mode: 'LIGHT' | 'DARK'}>`
   .auth-header {
-    color: ${COLORS.BLACK1};
+    color: ${({ mode }) => {
+      if (mode === 'LIGHT') return COLORS.BLACK1
+      return COLORS.GRAY4
+    }};
     margin-bottom: 2rem;
     * {
       margin: 0;
@@ -56,9 +60,10 @@ const getHeaderText = (type: 'LOGIN' | 'REGISTER') => {
 
 const AuthView: React.FC<AuthViewProps> = ({ onSubmit, type, isLoading, alternateAuth }) => {
   const { title, subtitle } = getHeaderText(type)
-
+  const [mode] = useThemeContext()
+  
   return (
-    <StyledAuthView>
+    <StyledAuthView mode={mode}>
       <div className="auth-header">
         <h1>{title}</h1>
         <RenderIf condition={subtitle !== undefined && subtitle.length > 0}>
