@@ -31,11 +31,13 @@ const IconInputWrapper = styled.div`
 const DOMInput = styled.input<{ active: boolean }>`
   width: 100%;
   margin-left: 8px;
+  background: transparent;
   border: 1px solid transparent;
   border-bottom-color: ${({ active }) => {
     if (active) return COLORS.GRAY1
   }};
   outline: none;
+  color: inherit;
 `
   
 const PureIconInput: React.FC<PureIconInputProps> = ({ icon, label, id, onFocus, onBlur, onChange, value }) => {

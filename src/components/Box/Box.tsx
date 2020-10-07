@@ -4,18 +4,17 @@ import { useWindowDimensions } from '../../hooks/use-window-dimensions'
 
 import { COLORS } from '../colors'
 
-const Box = styled.div<{ width: number }>`
+const Box = styled.div`
   border: 1px solid ${COLORS.GRAY5};
   border-radius: 4px;
-  width: ${({ width }) => width}px;
   margin: 0 auto;
   padding: 1rem;
 `
 
-export const ResponsiveBox: React.FC<{ children: React.ReactNode, width: number }> = ({ children, width }) => {
+export const ResponsiveBox: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const dimensions  = useWindowDimensions()
   if (dimensions.width >= 600) {
-    return <Box width={width}>{children}</Box>
+    return <Box>{children}</Box>
   }
   return <>{children}</>
 }

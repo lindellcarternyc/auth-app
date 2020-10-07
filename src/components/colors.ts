@@ -1,6 +1,6 @@
 export const COLORS = {
   BLUE1: '#2f80ed',
-  BLACK1: '#33333',
+  BLACK1: '#333333',
   GRAY1: '#828282',
   GRAY2: '#f2f2f2',
   GRAY3: '#4f4f4f',
