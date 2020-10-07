@@ -1,5 +1,5 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Redirect } from 'react-router-dom'
 
 import AuthLayout from '../layouts/AuthLayout/AuthLayout'
 import { useAuthContext } from '../hooks/use-auth-context'
@@ -8,6 +8,8 @@ import { ROUTES } from '../routes/constants'
 const Register: React.FC = () => {
   const [authState, authApi] = useAuthContext()
   const history = useHistory()
+
+  if (authState.status === 'SUCCESS') return <Redirect to={ROUTES.HOME} />
 
   return (
     <AuthLayout

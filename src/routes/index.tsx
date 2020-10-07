@@ -2,7 +2,7 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 
 import { ROUTES } from './constants'
-import { Login, Register } from '../pages'
+import { Home, Login, Register } from '../pages'
 
 const Routes: React.FC = () => {
   return (
@@ -14,7 +14,7 @@ const Routes: React.FC = () => {
         <Register />
       </Route>
       <Route path={ROUTES.HOME}>
-        <div>HOME</div>
+        <Home />
       </Route>
     </Switch>
   )
