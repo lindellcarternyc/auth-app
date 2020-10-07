@@ -1,10 +1,11 @@
 import React from 'react'
+import { AuthData } from '../../interfaces/auth.interface'
 
 import AuthForm, { AuthFormProps } from './AuthForm'
 
 interface AuthFormContainerProps extends Pick<AuthFormProps, 'type'> {
   isLoading: boolean
-  onSubmit: (data: { email: string, password: string }) => void
+  onSubmit: (data: AuthData) => void
 }
 
 const isValidPassword = (password: string) => password.length > 5

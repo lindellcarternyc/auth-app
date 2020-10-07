@@ -1,4 +1,5 @@
 import React from 'react'
+import { AuthData } from '../interfaces/auth.interface'
 
 export type AuthState = { 
   status: 'INITIAL'
@@ -20,7 +21,7 @@ export type AuthState = {
 
 interface AuthContextValue {
   state: AuthState
-  login(data: { email: string, password: string }): void
+  login(data: AuthData): void
 }
 
 const AuthContext = React.createContext<AuthContextValue>({
@@ -35,7 +36,7 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
     error: null  
   })
 
-  const login = async (data: { email: string, password: string }) => {
+  const login = async (data: AuthData) => {
     setState({ status: 'LOADING', user: null, error: null })
     return new Promise((res) => {
       window.setTimeout(() => {
