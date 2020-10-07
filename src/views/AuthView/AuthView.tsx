@@ -8,10 +8,11 @@ import AuthForm from '../../forms/AuthForm/AuthForm.container'
 import SocialButtonGroup from '../../components/SocialButton/SocialButtonGroup'
 import AlternateAuth, { AlternateAuthProps } from '../../components/AlternateAuth/AlternateAuth'
 import { useThemeContext } from '../../hooks/use-theme-context'
+import { AuthData } from '../../interfaces/auth.interface'
 
 export interface AuthViewProps {
   type: 'LOGIN' | 'REGISTER'
-  onSubmit: (data: { email: string, password: string }) => void
+  onSubmit: (data: AuthData) => void
   isLoading: boolean
   alternateAuth: AlternateAuthProps
 }
