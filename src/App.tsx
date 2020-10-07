@@ -1,22 +1,24 @@
 import React from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 import { ThemeContextProvider } from './context/theme.context'
 import { AuthContextProvider } from './context/auth.context'
 
 import AppWrapper from './components/AppWrapper'
-// import Login from './pages/Login'
-import Register from './pages/Register'
+
+import Routes from './routes'
 
 function App() {
   return (
-    <AuthContextProvider>
-      <ThemeContextProvider>
-        <AppWrapper>
-          {/* <Login /> */}
-          <Register />
-        </AppWrapper>
-      </ThemeContextProvider>
-    </AuthContextProvider>
+    <Router>
+      <AuthContextProvider>
+        <ThemeContextProvider>
+          <AppWrapper>
+            <Routes />
+          </AppWrapper>
+        </ThemeContextProvider>
+      </AuthContextProvider>
+    </Router>
   );
 }
 
