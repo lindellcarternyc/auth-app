@@ -1,11 +1,12 @@
 import { useContext } from 'react'
-import AuthContext, { AuthState } from '../context/auth.context'
-import { AuthData } from '../interfaces/auth.interface'
+import AuthContext, { AuthContextValue, AuthState } from '../context/auth.context'
 
-export const useAuthContext = (): [AuthState, { login: (data: AuthData) => void }] => {
+type UseAuthAPI = Pick<AuthContextValue, 'login' | 'register'>
+
+export const useAuthContext = (): [AuthState, UseAuthAPI] => {
   const {
-    state, login
+    state, ...api
   } = useContext(AuthContext)
 
-  return [state, { login }]
+  return [state, api]
 }

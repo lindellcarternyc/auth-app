@@ -19,15 +19,25 @@ export type AuthState = {
   user: null
 }
 
-interface AuthContextValue {
+export interface AuthContextValue {
   state: AuthState
   login(data: AuthData): void
+  register(data: AuthData): void
 }
 
 const AuthContext = React.createContext<AuthContextValue>({
   state: { status: 'INITIAL', user: null, error: null },
-  login: () => {}
+  login: () => {},
+  register: () => {}
 })
+
+const mockApiCall = () => {
+  return new Promise((res) => {
+    window.setTimeout(() => {
+      res()
+    }, 2500)
+  })
+}
 
 export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [state, setState] = React.useState<AuthState>({ 
@@ -38,17 +48,19 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
 
   const login = async (data: AuthData) => {
     setState({ status: 'LOADING', user: null, error: null })
-    return new Promise((res) => {
-      window.setTimeout(() => {
-        res()
-        setState({ status: 'SUCCESS', user: { }, error: null })
-      }, 2500)
-    })
+    await mockApiCall()
+    setState({ status: 'SUCCESS', user: {}, error: null })
+  }
+
+  const register = async (data: AuthData) => {
+    setState({ status: 'LOADING', user: null, error: null })
+    await mockApiCall()
+    setState({ status: 'SUCCESS', user: {}, error: null })
   }
 
   return (
     <AuthContext.Provider value={{
-      state, login
+      state, login, register
     }}>
       {children}
     </AuthContext.Provider>
