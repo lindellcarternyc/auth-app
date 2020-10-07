@@ -37,7 +37,6 @@ export const AuthContextProvider: React.FC<{ children: React.ReactNode }> = ({ c
 
   const login = async (data: { email: string, password: string }) => {
     setState({ status: 'LOADING', user: null, error: null })
-    // await wait(2000)
     return new Promise((res) => {
       window.setTimeout(() => {
         res()
