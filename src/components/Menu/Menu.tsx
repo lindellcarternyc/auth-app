@@ -7,13 +7,11 @@ import { COLORS } from '../colors'
 import MenuList from './MenuList/MenuList'
 import MenuToggle from './MenuToggle/MenuToggle'
 import RenderIf from '../RenderIf/RenderIf'
+import { Profile } from '../../interfaces/profile.interface'
 
 export interface MenuProps {
   size: 'small' | 'large'
-  profile: {
-    image: string
-    name: string
-  }
+  profile: Profile
   activeId: string | null
   onClick: (id: string) => void
 }
@@ -55,6 +53,7 @@ const Menu: React.FC<MenuProps> = ({ size, profile, activeId, onClick }) => {
                 { text: 'Group Chate', id: 'group-chat', icon: FaUsers }
               ], activeId
             }, {
+              onClick: handleClick,
               items: [
                 {
                   text: 'Sign Out', id: 'sign-out', icon: FaSignOutAlt,
