@@ -5,8 +5,6 @@ import { Profile } from '../../interfaces/profile.interface'
 import Menu from '../Menu'
 import Logo from '../Logo'
 import styled from 'styled-components'
-import { Theme } from '../../interfaces/Theme.interface'
-import { COLORS } from '../colors'
 
 export interface NavbarProps {
   theme: 'LIGHT' | 'DARK'
@@ -17,8 +15,7 @@ export interface NavbarProps {
   onClickSignOut(): void
 }
 
-const NavbarWrapper = styled.div<{ mode: Theme['mode'] }>`
-  border: 1px solid red;
+const NavbarWrapper = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -26,10 +23,6 @@ const NavbarWrapper = styled.div<{ mode: Theme['mode'] }>`
   height: 40px;
   display: flex;
   align-items: center;
-  background: ${({ mode }) => {
-    if (mode === 'LIGHT') return 'white'
-    return COLORS.BLACK1
-  }};
 
 
   & > div {
@@ -46,7 +39,7 @@ const Navbar: React.FC<NavbarProps> = ({ theme, size, profile, activeLink, onCli
   }
 
   return (
-    <NavbarWrapper mode={theme}>
+    <NavbarWrapper>
       <Logo theme={theme} />
       <Menu 
         profile={profile}
