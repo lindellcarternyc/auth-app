@@ -8,8 +8,8 @@ import { useWindowDimensions } from '../../hooks/use-window-dimensions'
 
 import AuthView, { AuthViewProps } from '../../views/AuthView/AuthView'
 
-import AuthorInfo from '../layout-components/AuthorInfo'
-import Logo from '../layout-components/Logo'
+import AuthorInfo from '../../components/AuthorInfo'
+import Logo from '../../components/Logo'
 
 const AuthLayout: React.FC<AuthViewProps> = (props) => {
   const dimensions = useWindowDimensions()
