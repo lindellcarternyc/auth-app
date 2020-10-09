@@ -13,7 +13,8 @@ const createPageHeaderStory = createStoryFactory(PageHeader)
 const DefaultPageHeaderProps: PageHeaderProps = {
   title: 'Profile',
   subtitle: 'Basic info, like your name and photo',
-  size: 'small'
+  size: 'small',
+  mode: 'LIGHT'
 }
 
 export const SmallHeader = createPageHeaderStory(DefaultPageHeaderProps)

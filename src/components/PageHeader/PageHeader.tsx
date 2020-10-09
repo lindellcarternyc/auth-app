@@ -1,7 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Theme } from '../../interfaces/Theme.interface'
+import { COLORS } from '../colors'
 
-const PageHeaderWrapper = styled.div<{ size: 'small' | 'large' }>`
+const PageHeaderWrapper = styled.div<{ mode: Theme['mode'], size: 'small' | 'large' }>`
   * {
     margin: 0;
     font-weight: normal;
@@ -11,6 +13,10 @@ const PageHeaderWrapper = styled.div<{ size: 'small' | 'large' }>`
   justify-content: center;
   flex-direction: column;
   text-align: center;
+  color: ${({ mode }) => {
+    if (mode === 'DARK') return COLORS.GRAY4
+    return COLORS.BLACK1
+  }};
 
   h1 {
     font-size: ${({ size }) => {
@@ -32,11 +38,12 @@ export interface PageHeaderProps {
   size: 'small' | 'large'
   title: string
   subtitle: string
+  mode: Theme['mode']
 }
 
-const PageHeader: React.FC<PageHeaderProps> = ({ size, title, subtitle }) => {
+const PageHeader: React.FC<PageHeaderProps> = ({ mode, size, title, subtitle }) => {
   return (
-    <PageHeaderWrapper size={size}>
+    <PageHeaderWrapper size={size} mode={mode}>
       <h1>{title}</h1>
       <h3>{subtitle}</h3>
     </PageHeaderWrapper>
