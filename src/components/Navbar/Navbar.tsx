@@ -26,7 +26,8 @@ const NavbarWrapper = styled.div<{ mode: Theme['mode']}>`
   display: flex;
   align-items: center;
   background: ${({ mode }) => {
-    if (mode === 'DARK') return COLORS.BLACK1;
+    if (mode === 'DARK') return COLORS.BLACK1
+    return 'white'
   }};
   padding-left: 0.5rem;
 
