@@ -5,13 +5,12 @@ import { Theme } from '../../interfaces/Theme.interface'
 import { COLORS } from '../colors'
 
 export interface ViewHeaderProps {
-  size: 'large' | 'small'
   mode: Theme['mode']
   title: string
   subtitle: string
 }
 
-const StyledviewHeader = styled.div<Pick<ViewHeaderProps, 'mode' | 'size'>>`
+const StyledviewHeader = styled.div<Pick<ViewHeaderProps, 'mode'>>`
   * {
     font-weight: normal;
   }
@@ -33,9 +32,9 @@ const StyledviewHeader = styled.div<Pick<ViewHeaderProps, 'mode' | 'size'>>`
   }
 `
 
-const ViewHeader: React.FC<ViewHeaderProps> = ({ size, mode, title, subtitle }) => {
+const ViewHeader: React.FC<ViewHeaderProps> = ({ mode, title, subtitle }) => {
   return (
-    <StyledviewHeader size={size} mode={mode}>
+    <StyledviewHeader mode={mode}>
       <h2>{title}</h2>
       <h4>{subtitle}</h4>
     </StyledviewHeader>
