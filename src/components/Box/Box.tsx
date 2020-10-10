@@ -11,10 +11,10 @@ const Box = styled.div`
   padding: 1rem;
 `
 
-export const ResponsiveBox: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const ResponsiveBox: React.FC<{ children: React.ReactNode, style?: React.CSSProperties }> = ({ children, style }) => {
   const dimensions  = useWindowDimensions()
   if (dimensions.width >= 600) {
-    return <Box>{children}</Box>
+    return <Box style={style}>{children}</Box>
   }
   return <>{children}</>
 }

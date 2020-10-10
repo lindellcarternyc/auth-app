@@ -12,7 +12,6 @@ const createViewHeaderstory = createStoryFactory(ViewHeader)
 const DefaultViewHeaderProps: ViewHeaderProps = {
   title: 'Profile',
   subtitle: 'Some info may be visible to other people',
-  size: 'large',
   mode: 'LIGHT'
 }
 
@@ -21,17 +20,14 @@ export const LargeLightViewHeader = createViewHeaderstory({
 })
 
 export const SmallLightViewHeader = createViewHeaderstory({
-  ...DefaultViewHeaderProps,
-  size: 'small'
+  ...DefaultViewHeaderProps
 })
 
 export const LargeDarkVieweHeader = createViewHeaderstory({
-  ...DefaultViewHeaderProps,
-  mode: 'DARK'
+  ...DefaultViewHeaderProps
 })
 
 export const SmallDarkViewHeader = createViewHeaderstory({
   ...DefaultViewHeaderProps,
-  mode: 'DARK',
-  size: 'small'
+  mode: 'DARK'
 })

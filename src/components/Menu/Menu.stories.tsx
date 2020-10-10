@@ -6,7 +6,7 @@ import ProfilePic from '../../images/profile.jpg'
 
 import Menu, { MenuProps } from './Menu'
 
-const Wrapper = (props: Pick<MenuProps, 'profile' | 'size'>): JSX.Element => {
+const Wrapper = (props: Pick<MenuProps, 'profile' | 'size' | 'mode'>): JSX.Element => {
   const [activeId, setAciveId] = React.useState('profile')
   return (
     <Menu {...props} activeId={activeId} onClick={setAciveId} />
@@ -18,7 +18,7 @@ export default {
   component: Menu,
 } as Meta
 
-const createWrapped = createStoryFactory((props: Pick<MenuProps, 'size' | 'profile'>) => {
+const createWrapped = createStoryFactory((props: Pick<MenuProps, 'size' | 'profile' | 'mode'>) => {
   return <Wrapper { ...props}/>
 })
 
@@ -29,13 +29,10 @@ const Profile = {
   name: 'Lindell Carter'
 }
 
-// let activeId = 'profile'
-
-const DEFAULT_PROPS: Pick<MenuProps, 'profile' | 'size'> = {
+const DEFAULT_PROPS: Pick<MenuProps, 'profile' | 'size' | 'mode'> = {
   size: 'small',
   profile: Profile,
-  // activeId,
-  // onClick: (id) => activeId = id
+  mode: 'LIGHT'
 }
 
 export const SmallMenu = createMenuStory({

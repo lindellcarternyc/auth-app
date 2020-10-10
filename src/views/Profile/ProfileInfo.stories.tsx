@@ -13,7 +13,9 @@ const createProfileInfoStory = createStoryFactory(ProfileInfo)
 
 const DefaultProfileInfoProps: ProfileInfoProps = {
   label: 'label',
-  detail: { image: ProfilPic }
+  detail: { image: ProfilPic },
+  size: 'small',
+  mode: 'LIGHT'
 }
 
 export const DefaultProfileInfo = createProfileInfoStory(DefaultProfileInfoProps)

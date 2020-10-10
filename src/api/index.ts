@@ -1,9 +1,11 @@
 import { AuthData, AuthUser } from "../interfaces/auth.interface"
 
+import { MOCK_USER } from '../data/mock-users'
+
 const mockApiCall = () => {
   return new Promise<AuthUser>((res) => {
     window.setTimeout(() => {
-      res({id: 'user1'})
+      res(MOCK_USER)
     }, 2500)
   })
 }

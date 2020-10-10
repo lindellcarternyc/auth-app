@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { COLORS } from '../../components/colors'
+import { COLORS } from '../components/colors'
 
 const AuthorInfoWrapper = styled.div`
   color: ${COLORS.GRAY5};

@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import api from '../api'
 import { AuthState } from '../context/auth.context'
+import { MOCK_USER } from '../data/mock-users'
 import { AuthAPI, AuthData } from '../interfaces/auth.interface'
 
 const useAuthState = (): [AuthState, AuthAPI] => {
   const [state, setState] = useState<AuthState>({
-    status: 'INITIAL',
-    user: null,
+    status: 'SUCCESS',
+    user: MOCK_USER,
     error: null
   })
 

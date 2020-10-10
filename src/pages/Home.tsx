@@ -23,8 +23,8 @@ const Home: React.FC = () => {
   }
 
   return (
-    <Container>
-      <ResponsiveBox>
+    <Container margin="60px auto" width={width >= 600 ? 650 : undefined}>
+      <ResponsiveBox style={{ padding: 0 }}>
         <ProfileView
           size={width >= 600 ? 'large' : 'small'}
           header={{

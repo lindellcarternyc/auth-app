@@ -5,12 +5,15 @@ import SquareImage from '../../components/SquareImage/SquareImage'
 import { COLORS } from '../../components/colors'
 import { Theme } from '../../interfaces/Theme.interface'
 
-const StyledProfileInfo = styled.div<{ size: 'small' | 'large', mode: Theme['mode']}>`
+const StyledProfileInfo = styled.div<{ size: 'small' | 'large', mode: Theme['mode'], isImage: boolean }>`
   display: flex;
   align-items: center;
-  padding: 0.5rem 1rem;
+  padding: ${({ isImage }) => {
+    if (isImage) return '0.5rem 1rem'
+    return '1rem 1rem'
+  }};
   justify-content: ${({ size }) => {
-    if (size === 'large') return 'space-between'
+    if (size === 'small') return 'space-between'
   }};
 
   label {
@@ -39,7 +42,7 @@ type ProfileDetail = {
   image: string
 }
 
-const isImage = (detail: ProfileDetail): detail is { image: string } => {
+const isImageDetail = (detail: ProfileDetail): detail is { image: string } => {
   return Object.keys(detail).includes('image')
 }
 
@@ -52,13 +55,13 @@ export interface ProfileInfoProps {
 
 const ProfileInfo: React.FC<ProfileInfoProps> = ({ label, detail, size, mode }) => {
   let content: JSX.Element
-  if (isImage(detail)) {
+  if (isImageDetail(detail)) {
     content = <SquareImage src={detail.image} alt="Profile picture" size="large" />
   } else {
     content = <p>{detail.text}</p>
   }
   return (
-    <StyledProfileInfo size={size} mode={mode}>
+    <StyledProfileInfo size={size} mode={mode} isImage={isImageDetail(detail)}>
       <label>{label}</label>
       {content}
     </StyledProfileInfo>

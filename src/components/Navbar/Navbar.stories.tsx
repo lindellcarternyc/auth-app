@@ -12,7 +12,7 @@ export default {
 const createNavbarStory = createStoryFactory(NavbarComponent)
 
 const DefaultNavbarProps: NavbarProps = {
-  theme: 'LIGHT',
+  mode: 'LIGHT',
   size: 'small',
   profile: {
     image: ProfilePic,

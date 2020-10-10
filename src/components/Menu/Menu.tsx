@@ -8,21 +8,27 @@ import MenuList from './MenuList/MenuList'
 import MenuToggle from './MenuToggle/MenuToggle'
 import RenderIf from '../RenderIf/RenderIf'
 import { Profile } from '../../interfaces/profile.interface'
+import { Theme } from '../../interfaces/Theme.interface'
 
 export interface MenuProps {
+  mode: Theme['mode']
   size: 'small' | 'large'
-  profile: Profile
+  profile: Pick<Profile, 'name' | 'image'>
   activeId: string | null
   onClick: (id: string) => void
 }
 
-const MenuWrapper = styled.div`
+const MenuWrapper = styled.div<{ mode: Theme['mode'] }>`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  background-color: ${({ mode }) => {
+    if (mode === 'LIGHT') return 'white'
+    return COLORS.BLACK1
+  }};
 `
 
-const Menu: React.FC<MenuProps> = ({ size, profile, activeId, onClick }) => {
+const Menu: React.FC<MenuProps> = ({ size, profile, activeId, onClick, mode }) => {
   const [isOpen, setIsOpen] = React.useState(false)
 
   const toggleIsOpen = () => { 
@@ -35,7 +41,7 @@ const Menu: React.FC<MenuProps> = ({ size, profile, activeId, onClick }) => {
   }
 
   return (
-    <MenuWrapper>
+    <MenuWrapper mode={mode}>
       <MenuToggle 
         size={size} 
         profile={profile} 
